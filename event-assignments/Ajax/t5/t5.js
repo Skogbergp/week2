@@ -9,11 +9,11 @@ let restaurants = [];
 async function main() {
   try {
     restaurants = await getRestaurants();
+    sortRestaurants();
+    createTable();
   } catch (error) {
     console.error(error);
   }
-  sortRestaurants();
-  createTable();
 }
 
 async function getRestaurants() {
