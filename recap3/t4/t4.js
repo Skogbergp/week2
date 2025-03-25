@@ -1,4 +1,3 @@
-import {distance} from '../lib/euclidean.js'; // Import the distance function from the specified module
 
 const restaurants = [
   {
@@ -771,6 +770,12 @@ const restaurants = [
     __v: 0,
   },
 ];
+
+function distance(alkupiste, loppupiste) {
+  return Math.sqrt(
+    (loppupiste[0] * alkupiste[1]) ** 2 + (loppupiste[1] * alkupiste[0]) ** 2
+  );
+}
 
 // Function to handle successful geolocation
 function success(position) {

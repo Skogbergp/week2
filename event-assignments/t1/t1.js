@@ -28,6 +28,35 @@ const todoList = [
 ];
 
 const ulList = document.querySelector('ul');
+const addButton = document.querySelector('.add-btn');
+const modal = document.createElement("dialog");
+const form = document.createElement("form");
+const input = document.createElement("input");
+const submit = document.createElement("button");
+input.type = "text";
+input.placeholder = "Enter your task";
+submit.textContent = "Save";
+
+submit.addEventListener('click', function(event) {
+
+  event.preventDefault();
+  todoList.push({
+    id: todoList.length + 1,
+    task: input.value,
+    completed: false
+  });
+  console.log(todoList);
+  modal.close();
+  input.value = '';
+});
+
+document.body.appendChild(modal);
+modal.appendChild(form);
+form.appendChild(input);
+form.appendChild(submit);
+addButton.addEventListener('click', function() {
+  modal.showModal();
+});
 
 todoList.forEach(todo => {
   const li = document.createElement('li');
@@ -41,6 +70,22 @@ todoList.forEach(todo => {
   input.type = 'checkbox';
 
   todo.completed ? input.setAttribute('checked', 'checked') : null;
+  input.addEventListener('change', function() {
+      if (todo.completed) {
+          todo.completed = false;
+      }else {
+          todo.completed = true;
+      }
+      console.log(todoList);
+  });
+  button = document.createElement('button');
+  button.textContent = 'Delete';
+  button.addEventListener('click', function() {
+    ulList.removeChild(li);
+    todoList.splice(todoList.indexOf(todo), 1);
+    console.log(todoList);
+  });
+  li.appendChild(button);
 
   li.appendChild(input);
   li.appendChild(label);
