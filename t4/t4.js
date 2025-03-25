@@ -776,8 +776,6 @@ const restaurants = [
 function success(position) {
   const currentLocation = [position.coords.latitude, position.coords.longitude]; // Get current location coordinates
 
-  console.log(currentLocation); // Log current location
-
   // Sort restaurants by distance from current location
   const sortedRestaurants = restaurants.sort((a, b) => {
     return (
