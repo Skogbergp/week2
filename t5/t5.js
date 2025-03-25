@@ -770,4 +770,35 @@ const restaurants = [
   },
 ];
 
-// your code here
+const options = {
+  enableHighAccuracy: true,
+  timeout: 5000,
+  maximumAge: 0
+};
+
+function success(pos) {
+  var crd = pos.coords;
+
+var map = L.map('map').setView([crd.latitude, crd.longitude], 13);
+
+
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  maxZoom: 19,
+  attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}).addTo(map);
+
+
+restaurants.forEach(restaurant => {
+  L.marker([restaurant.location.coordinates[1], restaurant.location.coordinates[0]]).addTo(map)
+    .bindPopup(`<h3>${restaurant.name}</h3> \n <p>${restaurant.address}</p>`)
+  });
+}
+
+function error(err) {
+  console.warn(`ERROR(${err.code}): ${err.message}`);
+}
+
+
+navigator.geolocation.getCurrentPosition(success,error,options);
+
+

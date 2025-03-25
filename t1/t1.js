@@ -30,20 +30,13 @@ const todoList = [
 const ulList = document.querySelector('ul');
 
 todoList.forEach(todo => {
-  const li = document.createElement('li');
-  const label = document.createElement('label');
-
-  label.textContent = todo.task;
-  label.htmlFor = 'todo-' + todo.id;
-
-  const input = document.createElement('input');
-  input.id = 'todo-' + todo.id;
-  input.type = 'checkbox';
-
-  todo.completed ? input.setAttribute('checked', 'checked') : null;
-
-  li.appendChild(input);
-  li.appendChild(label);
-  ulList.insertAdjacentHTML('beforeend', li.outerHTML);
+  const checkedAttribute = todo.completed ? 'checked' : '';
+  const todoHTML = `
+    <li>
+      <input id="todo-${todo.id}" type="checkbox" ${checkedAttribute}>
+      <label for="todo-${todo.id}">${todo.task}</label>
+    </li>
+  `;
+  ulList.insertAdjacentHTML('beforeend', todoHTML);
 });
 // add your code here
