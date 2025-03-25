@@ -1,4 +1,4 @@
-import {fetchData} from '../../../lib/fetchData.js';
+import {fetchData} from '../../lib/fetchData.js';
 
 const url = 'https://media2.edu.metropolia.fi/restaurant/api/v1';
 const restarauntTable = document.querySelector('table'); // Get the table element

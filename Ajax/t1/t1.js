@@ -1,5 +1,3 @@
-import {fetchData} from '../../lib/fetchData.js';
-
 try {
   const user = {
     name: 'John Doe',
@@ -13,8 +11,9 @@ try {
     },
     body: JSON.stringify(user),
   };
-  const userData = await fetchData(url, options);
-  console.log(userData);
+  const userData = await fetch(url, options);
+  let data = await userData.json();
+  console.log(data);
 } catch (error) {
   console.error('An error occurred:', error);
 }
