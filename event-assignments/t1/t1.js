@@ -48,6 +48,7 @@ submit.addEventListener('click', function(event) {
   console.log(todoList);
   modal.close();
   input.value = '';
+  createList();
 });
 
 document.body.appendChild(modal);
@@ -57,8 +58,10 @@ form.appendChild(submit);
 addButton.addEventListener('click', function() {
   modal.showModal();
 });
+function createList(){
+  ulList.innerHTML = '';
 
-todoList.forEach(todo => {
+  todoList.forEach(todo => {
   const li = document.createElement('li');
   const label = document.createElement('label');
 
@@ -91,4 +94,6 @@ todoList.forEach(todo => {
   li.appendChild(label);
   ulList.appendChild(li);
 });
+}
+createList();
 // add your code here
